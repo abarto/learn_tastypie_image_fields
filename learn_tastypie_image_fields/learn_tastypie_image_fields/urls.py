@@ -16,6 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from user_profiles.api import UserProfileResource
+
+user_profile_resource = UserProfileResource()
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/', include(user_profile_resource.urls)),
 ]
