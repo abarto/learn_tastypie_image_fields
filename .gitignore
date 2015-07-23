@@ -1,0 +1,3 @@
+learn_tastypie_image_fields_venv
+*.pyc
+db.sqlite3
