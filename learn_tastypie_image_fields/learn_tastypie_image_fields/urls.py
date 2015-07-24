@@ -16,11 +16,16 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from user_profiles.api import UserProfileResource
+from tastypie.api import Api
 
-user_profile_resource = UserProfileResource()
+from user_profiles.api import UserProfileResource, UserProfileNestedImageResource
+
+v1_api = Api(api_name='v1')
+v1_api.register(UserProfileResource())
+v1_api.register(UserProfileNestedImageResource())
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/', include(user_profile_resource.urls)),
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    url(r'^api/', include(v1_api.urls)),
 ]
